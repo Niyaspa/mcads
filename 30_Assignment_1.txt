@@ -1,0 +1,299 @@
+program 1:C program to find the sum of 'n' numbers
+ROLL NO:30
+NAME: MOHAMMED NIYAS P A
+
+PROGRAM:
+
+#include<stdio.h>
+int main()
+{
+	int ary[10],size,i;
+	int sum=0;
+	printf("enter array size\n");
+	scanf("%d",&size);
+	printf("enter array elements\n");
+	for(i=0;i<size;i++)
+	{
+		scanf("%d",&ary[i]);
+	}
+	for(i=0;i<size;i++)
+	{
+		sum=sum+ary[i];
+	}
+	printf("sum o f the array=%d\n",sum);
+	return 0;
+}	
+____________________________________________________________________________________
+
+PROGRAM 2:C program to merge two sorted arrays
+ROLL NO:30
+NAME: MOHAMMED NIYAS P A
+
+PROGRAM:
+
+
+#include <stdio.h>
+void insert_elements(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+}
+
+void sort_array(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }  
+    
+}
+
+void merge_arrays(int arr1[], int size1, int arr2[], int size2, int merged[]) {
+    int i = 0, j = 0, k = 0;
+
+    while (i < size1 && j < size2) {
+        if (arr1[i] < arr2[j]) {
+            merged[k++] = arr1[i++];
+        } else {
+            merged[k++] = arr2[j++];
+        }
+    }
+
+    while (i < size1) {
+        merged[k++] = arr1[i++];
+    }
+    while (j < size2) {
+        merged[k++] = arr2[j++];
+    }
+}
+
+int main() {
+    int size1, size2;
+    printf("Enter the size of the first array: ");
+    scanf("%d", &size1);
+    
+    int array1[size1];
+    insert_elements(array1, size1);
+    printf("The unsorted 1st array is:");
+    for(int i = 0 ; i < size1 ; i++) {
+    	printf(" %d ", array1[i]);
+    	}
+    	
+    sort_array(array1, size1);
+    printf("\nThe sorted array is:");
+    for(int i = 0 ; i < size1 ; i++) {
+    	printf(" %d ", array1[i]);
+    	}
+    	
+    printf("\nEnter the size of the second array: ");
+    scanf("%d", &size2);
+    
+    int array2[size2];
+    insert_elements(array2, size2);
+    printf("The unsorted 2nd array is:");
+    for(int i = 0 ; i < size2 ; i++) {
+    	printf(" %d ",array2[i]);
+    	}
+    	
+    sort_array(array2, size2);
+    printf("\nThe sorted array is:");
+    for(int i = 0 ; i < size1 ; i++) {
+    	printf(" %d ", array2[i]);
+    	}
+    
+    int merged[size1 + size2];
+    merge_arrays(array1, size1, array2, size2, merged);
+    sort_array(merged, size1 + size2);
+    printf("\nSorted merged array: ");
+    for (int i = 0; i < size1 + size2; i++) {
+        printf("%d ", merged[i]);
+    }
+    
+    printf("\n");
+
+    return 0;
+}
+________________________________________________________________________________________________
+
+PROGRAM 3: C program to create a STACK using array data structure and implement the operations PUSH, POP and TRAVESE
+ROLL NO: 30
+NAME: MOHAMMED NIYAS P A
+
+PROGRAM:
+
+#include<stdio.h>
+#include<stdlib.h>
+int stack[10];
+int top=-1;
+int value;
+int i;
+void push()
+{
+	
+		
+	if (top == 10-1) 
+		{
+	                printf("Error: Stack overflow!\n");
+	        return;
+		}
+	stack[++top] = value;
+}
+int pop() 
+{
+	if (top ==-1) {
+		printf("Error: Stack underflow!\n");
+	        return -1;
+	}
+	return stack[top--];
+}
+int traversal()
+{
+	if(top>=0)
+	{
+		printf("\n The elements in STACK \n");
+			for(i=top; i>=0; i--)
+				printf("\n%d\n",stack[i]);
+
+	}
+	else
+	{
+	printf("\n The STACK is empty");
+	}
+   
+}
+int main()
+{
+	int choice;
+	do
+	{	
+	        printf("1.Push\n2.pop\n3.traversal\n4.exit\n\n");
+		printf("Enter Your choice");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+		case 1:
+			printf("\nenter the value to push\n");
+			scanf("%d",&value);				
+			push();
+			break;
+		case 2:
+			pop();
+			break;
+		case 3:
+			traversal();
+			break;
+		case 4:
+			break;
+		default:
+			printf("\nOOPS! wrong choice\n");
+		}
+	}
+	while(choice !=4);
+	
+	return(0);
+}
+_____________________________________________________________________________________________________
+
+PROGRAM 4:C program to create a QUEUE using array data structure and implement the operations ENQUEUE, DEQUEUE and TRAVERSE
+ROLL NO: 30
+NAME MOHAMMED NIYAS P A
+
+PROGRAM:
+
+#include <stdio.h>
+
+
+int queue[20];
+int front = -1;
+int rear = -1;
+
+
+int isEmpty() 
+{
+    return front == -1;
+}
+
+int isFull() {
+    return rear == 20 - 1;
+}
+
+
+void enqueue(int element) 
+{
+    if (isFull()) {
+        printf("Queue is full\n");
+        return;
+    }
+   	 if (isEmpty()) {
+        	front = rear = 0;
+    } else 
+	{
+	        rear++;
+	 }
+    queue[rear] = element;
+    printf("%d enqueued to queue\n", element);
+}
+
+int dequeue() {
+    if (isEmpty()) {
+        printf("Queue is empty\n");
+        return -1;
+    }
+    int element = queue[front];
+    if (front == rear) {
+        front = rear = -1; 
+    } else {
+        front++;
+    }
+    return element;
+}
+
+
+void traverse() {
+    if (isEmpty()) {
+        printf("Queue is empty\n");
+        return;
+    }
+    printf("Queue elements: ");
+    for (int i = front; i <= rear; i++) {
+        printf("%d ", queue[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice, element;
+    while (1) {
+        printf("1. Enqueue\n2. Dequeue\n3. Traverse\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter element to enqueue: ");
+                scanf("%d", &element);
+                enqueue(element);
+                break;
+            case 2:
+                element = dequeue();
+                if (element != -1) {
+                    printf("Dequeued element: %d\n", element);
+                }
+                break;
+            case 3:
+                traverse();
+                break;
+            case 4:
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+    return 0;
+}
+

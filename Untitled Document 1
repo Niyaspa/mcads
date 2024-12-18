@@ -1,0 +1,50 @@
+#include<stdio.h>
+void BitVector(set1)
+{
+	char set1_bit[26];
+	for(i=0;i<=25;i++)
+	{
+		if(set[i]==arr[i])
+		{
+			set1_bit[i]=1;
+		}
+	}
+	char set2_bit[26];
+	for(i=0;i<=25:i++)
+	{
+		if(set[i]==arr[i])
+		{
+			set2_bit[i]=1;
+		}
+	}
+	
+}
+void Union(set1_bit,set2_bit)
+{
+	for(i=0;i<=25;i++)
+	{
+		set1_bit[i]||set2_bit[i];
+	}
+}
+void Intersection(set1,set2)
+{
+	for(i=0;i<=25;i++)
+	{
+		set1_bit[]&&set2_bit[i];
+	}
+}
+void Compliment(set)
+{
+	for(i=0;)
+}
+int main()
+{
+	char arr[26];
+	char set1[26];
+	char set2[26];
+
+}
+
+//c program to show bit vector representation of alphabets and also do set operations
+
+
