@@ -1,100 +1,107 @@
-#include <stdio.h>
+#include<stdio.h>
 
-// Function to sort an array 
-void sortArray(int arr[], int size) {
-    int i, j;
-    for (i = 0; i < size - 1; i++) {
-        for (j = 0; j < size - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
+void insert_elements(int arr[], int size)
+{
+	printf(" Enter %d elements of array : ",size);
+	for(int i=0; i<size; i++)
+	{
+		scanf("%d",&arr[i]);
+	}
 }
 
-// Function to merge two arrays 
-void mergeArrays(int arr1[], int size1, int arr2[], int size2, int arr3[]) {
-    int i;
-    for (i = 0; i < size1; i++) {
-        arr3[i] = arr1[i];
-    }
-    for (i = 0; i < size2; i++) {
-        arr3[size1 + i] = arr2[i];
-    }
+void sort(int arr[], int size)
+{
+	for(int i=0; i<size-1; i++)
+	{
+		for(int j=0; j<size-i-1; j++)
+		{
+			if(arr[j]>arr[j+1])
+			{
+				int temp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=temp;
+			}
+		}
+	}
 }
 
-int main() {
-    int i, n, k;
+void merge_array(int arr1[], int arr2[], int size1, int size2, int merged[])
+{
+	int i=0;
+	int j=0;
+	int k=0;
+	while(i<size1 && j<size2)
+	{
+		if(arr1[i]<arr2[j])
+		{
+			merged[k++]=arr1[i++];
+		}
+		else
+		{
+			merged[k++]=arr2[j++];
+		}
+	}
+	while(i<size1)
+	{
+		merged[k++]=arr1[i++];
+	}
+	while(j<size2)
+	{
+		merged[k++]=arr2[j++];
+	}
+}
+int main()
+{
+	int size1, size2;
+	printf("Enter size of the first array : ");
+	scanf("%d",&size1);
+	int arr1[size1];
+	insert_elements(arr1,size1);
 
-    printf("Enter the size of the first array: ");
-    scanf("%d", &n);
-    int arr1[n];
-    
-    printf("Enter the elements of the first array: \n");
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr1[i]);
-    }
+	printf("Enter size of the second array : ");
+	scanf("%d",&size2);
+	int arr2[size2];
+	insert_elements(arr2,size2);
 
-    // Display unsorted first array
-    printf("First Unsorted Array: \n");
-    for (i = 0; i < n; i++) {
-        printf("%d ", arr1[i]);
-    }
-    printf("\n");
+	printf("Elements of first array before sorting: ");
+	for(int i=0; i<size1; i++)
+	{
+		printf("%d ",arr1[i]);
+	}
+	printf("\n");
 
-    // Display the first sorted array
-    sortArray(arr1, n);
-    printf("The first sorted array is: \n");
-    for (i = 0; i < n; i++) {
-        printf("%d ", arr1[i]);
-    }
-    printf("\n");
+	printf("Elements of second array before sorting: ");
+	for(int i=0; i<size2; i++)
+	{
+		printf("%d ",arr2[i]);
+	}
+	printf("\n");
 
-    
-    printf("Enter the size of the second array: ");
-    scanf("%d", &k);
-    int arr2[k];
+	sort(arr1,size1);
+	sort(arr2,size2);
 
-    printf("Enter the elements of the second array: \n");
-    for (i = 0; i < k; i++) {
-        scanf("%d", &arr2[i]);
-    }
+	printf("Elements of first array after sorting: ");
+	for(int i=0; i<size1; i++)
+	{
+		printf("%d ",arr1[i]);
+	}
+	printf("\n");
+	printf("Elements of second array after sorting: ");
+	for(int i=0; i<size2; i++)
+	{
+		printf("%d ",arr2[i]);
+	}
+	printf("\n");
 
-    // Display unsorted second array
-    printf("Second Unsorted Array: \n");
-    for (i = 0; i < k; i++) {
-        printf("%d ", arr2[i]);
-    }
-    printf("\n");
+	int merge[size1+size2];
+	merge_array(arr1,arr2,size1,size2,merge);
 
-    // Display the second sorted array
-    sortArray(arr2, k);
-    printf("The second sorted array is: \n");
-    for (i = 0; i < k; i++) {
-        printf("%d ", arr2[i]);
-    }
-    printf("\n");
-
-    // Merge the two sorted arrays
-    int arr3[n + k];
-    mergeArrays(arr1, n, arr2, k, arr3);
-
-    // Display the merged unsorted array
-    printf("The merged unsorted array is: \n");
-    for (i = 0; i < n + k; i++) {
-        printf("%d ", arr3[i]);
-    }
-    printf("\n");
-
-    // Sort the merged array 
-    sortArray(arr3, n + k);
-    printf("The merged sorted array is: \n");
-    for (i = 0; i < n + k; i++) {
-        printf("%d ", arr3[i]);
-    }
-    printf("\n");
-
-    return 0;
+	printf("Elements of merged array: ");
+	for(int i=0; i<size1+size2; i++)
+	{
+		printf("%d ",merge[i]);
+	}
+	printf("\n");
+	
+	return(0);
 }
