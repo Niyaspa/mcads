@@ -15,7 +15,7 @@ void push()
 		}
 	stack[++top] = value;
 }
-int pop() 
+void pop() 
 {
 	if (top ==-1) {
 		printf("Error: Stack underflow!\n");
@@ -23,7 +23,7 @@ int pop()
 	}
 	return stack[top--];
 }
-int traversal()
+void traversal()
 {
 	if(top>=0)
 	{
