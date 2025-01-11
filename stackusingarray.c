@@ -1,70 +1,91 @@
 #include<stdio.h>
-#include<stdlib.h>
-int stack[10];
+#define max 5
+int stack[max];
 int top=-1;
-int value;
-int i;
+
 void push()
 {
-	
-		
-	if (top == 10-1) 
-		{
-	        printf("Error: Stack overflow!\n");
-	        return;
-		}
-	stack[++top] = value;
-}
-void pop() 
-{
-	if (top ==-1) {
-		printf("Error: Stack underflow!\n");
-	        return -1;
-	}
-	return stack[top--];
-}
-void traversal()
-{
-	if(top>=0)
-	{
-		printf("\n The elements in STACK \n");
-			for(i=top; i>=0; i--)
-				printf("\n%d\n",stack[i]);
+	int item;
 
+	if((top==max-1))
+	{
+	printf("Stack is full\n");
 	}
 	else
 	{
-	printf("\n The STACK is empty");
+		printf("enter the item to be pushed: ");
+		scanf("%d",&item);
+		top=top+1;
+		stack[top]=item;
+		printf("pushed item : %d",item);
 	}
-   
+}
+
+void pop()
+{
+	if(top<0)
+	{
+		printf("Stack is empty, No item to pop\n");
+	}
+	else
+	{
+		int poppeditem=stack[top];
+		printf("popped item : %d\n",poppeditem);
+		top--;
+	}
+}
+void traversal()
+{
+	if(top<0)
+	{
+		printf("stack is empty ,No item to show\n");
+	}
+	else
+	{
+		printf("Stack items are : ");
+		for(int i=top;i>=0;i--)
+		{
+			printf("%d  ",stack[i]);
+		}
+	}
 }
 int main()
-{
+{      
 	int choice;
+
 	do
-	{	printf("1.Push\n2.pop\n3.traversal\n4.exit\n\n");
-		printf("Enter Your choice");
+	{
+		printf("\n1: PUSH\n");
+		printf("2: POP\n");
+		printf("3: TRAVERSAL\n");
+		printf("4: EXIT\n");
+		
+		
+		printf("\n\tENTER THE CHOICE FROM 1 TO 4 : ");
+
+
 		scanf("%d",&choice);
 		switch(choice)
 		{
-		case 1:
-			printf("\nenter the value to push\n");
-			scanf("%d",&value);				
-			push();
-			break;
-		case 2:
-			pop();
-			break;
-		case 3:
-			traversal();
-			break;
-		case 4:
-			break;
-		default:
-			printf("\nOOPS! wrong choice\n");
+			case 1:
+				push();
+				printf("\n");
+				break;
+			case 2:
+				pop();
+				printf("\n");
+				break;
+			case 3:
+				traversal();
+				printf("\n");
+				break;
+			case 4: 
+				break;
+			default:
+				printf(" you have chosen wrong choice");
+				
 		}
-	}
-	while(choice !=4);
-	
+
+	}while(choice !=4);
 	return(0);
 }
